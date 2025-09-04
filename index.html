@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NPC Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .container {
+      margin-left: 20px;
+      margin-top: 20px;
+      max-width: 400px;
+    }
+
+    #styleSelect {
+      margin-bottom: 10px;
+    }
+
+    #generateBtn {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    #output {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Random NPC Generator</h1>
+    <label for="styleSelect">Select Style:</label>
+    <select id="styleSelect">
+      <option value="highFantasy">High Fantasy</option>
+      <option value="asianInspired">Asian Inspired</option>
+      <option value="russianInspired">Russian Inspired</option>
+    </select>
+    <button id="generateBtn">Generate NPC</button>
+    <div id="output"></div>
+  </div>
+
+  <script src="NPC_Generator.js"></script>
+</body>
+</html>
