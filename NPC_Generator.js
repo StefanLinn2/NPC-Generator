@@ -13,11 +13,13 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   if (!parts) return "Unknown";
 
   let hyphenChance = 0.25;
-  let suffixHyphenChance = 0.8
+  let suffixHyphenChance = 0.8;
+
   if (phoneticStyle === "openVowels") {
     hyphenChance = 0.5;
     suffixHyphenChance = 0.25;
-  }
+    maxSyllables -= 1; 
+  } 
   if (phoneticStyle === 'softConsonants') {
     hyphenChance = 0.1;
     suffixHyphenChance = 0.1;
@@ -26,6 +28,15 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
     hyphenChance = 0.1;
     suffixHyphenChance = 0.1;
   }
+  if (phoneticStyle === 'harshConsonants') {
+    minSyllables += 1;
+    maxSyllables += 1;
+  }
+  if (phoneticStyle === 'complexClusters') {
+    minSyllables += 1;
+    maxSyllables += 1;
+  }
+
   let syllableCount = Math.floor(Math.random() * (maxSyllables - minSyllables + 1)) + minSyllables;
   let name = "";
   let lastWasVowel = false;
