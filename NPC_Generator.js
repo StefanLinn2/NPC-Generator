@@ -1,10 +1,6 @@
-//StefanLinn2
+// NPC Generator
+// StefanLinn2
 
-// I'm designing this because my players keep asking me what 
-//my NPC's names are and I am fumbling bad
-
-let firstNames = ["Alaric", "Bryn", "Cedric", "Daria"];
-let lastNames = ["Ironfoot", "Silverleaf", "Stormwind"];
 let occupations = ["blacksmith", "apothecary", "merchant", "guard"];
 let traits = ["grumpy", "cheerful", "secretive", "clumsy"];
 
@@ -12,13 +8,25 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function generateNPC() {
-  const name = `${randomPick(firstNames)} ${randomPick(lastNames)}`;
-  const occupation = randomPick(occupations);
-  const trait = randomPick(traits);
+function generateName(race) {
+  let parts = syllableData[race];
+  if (!parts) return "Unknown";
+
+  let name = randomPick(parts.prefix);
+  if (Math.random() > 0.5) name += randomPick(parts.middle);
+  name += randomPick(parts.suffix);
+
+  return name;
+}
+
+function generateNPC(race) {
+  let name = generateName(race);
+  let occupation = randomPick(occupations);
+  let trait = randomPick(traits);
   return `${name}, a ${trait} ${occupation}`;
 }
 
 document.getElementById("generateBtn").addEventListener("click", () => {
-  document.getElementById("output").textContent = generateNPC();
+  let race = document.getElementById("raceSelect").value;
+  document.getElementById("output").textContent = generateNPC(race);
 });

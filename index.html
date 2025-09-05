@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>NPC Generator</title>
   <style>
@@ -15,7 +16,7 @@
       max-width: 400px;
     }
 
-    #styleSelect {
+    #raceSelect {
       margin-bottom: 10px;
     }
 
@@ -29,22 +30,27 @@
       padding: 10px;
       border: 1px solid #ccc;
       min-height: 30px;
+      background-color: #f9f9f9;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Random NPC Generator</h1>
-    <label for="styleSelect">Select Style:</label>
-    <select id="styleSelect">
-      <option value="highFantasy">High Fantasy</option>
-      <option value="asianInspired">Asian Inspired</option>
-      <option value="russianInspired">Russian Inspired</option>
+    <label for="raceSelect">Select Race:</label>
+    <select id="raceSelect">
+      <option value="elf">Elf</option>
+      <option value="dwarf">Dwarf</option>
+      <option value="halfling">Halfling</option>
+      <option value="orc">Orc</option>
     </select>
     <button id="generateBtn">Generate NPC</button>
     <div id="output"></div>
   </div>
 
+  <script src="nameSyllables.js"></script>
   <script src="NPC_Generator.js"></script>
 </body>
+
 </html>
