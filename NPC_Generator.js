@@ -8,7 +8,10 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function generateName(phoneticStyle, minSyllables = 2, maxSyllables = 5) {
+function generateName(phoneticStyle, minSyllables, maxSyllables) {
+  if (minSyllables === undefined) minSyllables = 2;
+  if (maxSyllables === undefined) maxSyllables = 5;
+
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
 
@@ -16,27 +19,38 @@ function generateName(phoneticStyle, minSyllables = 2, maxSyllables = 5) {
   let name = "";
   let lastWasVowel = false;
 
-  let first = randomPick(parts.prefix);
-  name += first;
-  lastWasVowel = /[aeiouAEIOU]$/.test(first);
+  let firstSyllable = randomPick(parts.prefix);
+  name += firstSyllable;
+  lastWasVowel = /[aeiouAEIOU]$/.test(firstSyllable);
 
   for (let i = 1; i < syllableCount - 1; i++) {
     let candidateArray = parts.middle.concat(parts.suffix);
     let syllable = randomPick(candidateArray);
 
-    if (lastWasVowel && /^[aeiouAEIOU]/.test(syllable)) {
-      syllable = randomPick(parts.suffix);
+    if (lastWasVowel) {
+      let safeSuffixFound = false;
+      for (let j = 0; j < parts.suffix.length; j++) {
+        if (!/^[aeiouAEIOU]/.test(parts.suffix[j])) {
+          syllable = parts.suffix[j];
+          safeSuffixFound = true;
+          break;
+        }
+      }
+      if (!safeSuffixFound) {
+        syllable = randomPick(parts.suffix);
+      }
     }
 
     name += syllable;
     lastWasVowel = /[aeiouAEIOU]$/.test(syllable);
   }
 
-  let last = randomPick(parts.suffix);
-  name += last;
+  let lastSyllable = randomPick(parts.suffix);
+  name += lastSyllable;
 
   return name;
 }
+
 
 function generateNPC(phoneticStyle) {
   let name = generateName(phoneticStyle);
