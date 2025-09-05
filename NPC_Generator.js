@@ -27,6 +27,6 @@ function generateNPC(race) {
 }
 
 document.getElementById("generateBtn").addEventListener("click", () => {
-  let race = document.getElementById("raceSelect").value;
+  let race = document.getElementById("styleSelect").value;
   document.getElementById("output").textContent = generateNPC(race);
 });

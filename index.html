@@ -16,7 +16,7 @@
       max-width: 400px;
     }
 
-    #raceSelect {
+    #styleSelect {
       margin-bottom: 10px;
     }
 
@@ -38,13 +38,15 @@
 <body>
   <div class="container">
     <h1>Random NPC Generator</h1>
-    <label for="raceSelect">Select Race:</label>
-    <select id="raceSelect">
-      <option value="elf">Elf</option>
-      <option value="dwarf">Dwarf</option>
-      <option value="halfling">Halfling</option>
-      <option value="orc">Orc</option>
+    <label for="styleSelect">Select style:</label>
+    <select id="styleSelect">
+      <option value="openVowels">Open Vowels</option>
+      <option value="harshConsonants">Harsh Consonants</option>
+      <option value="softConsonants">Soft Consonants</option>
+      <option value="complexClusters">Complex Clusters</option>
+      <option value="melodic">Melodic</option>
     </select>
+
     <button id="generateBtn">Generate NPC</button>
     <div id="output"></div>
   </div>
