@@ -8,49 +8,62 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 4) {
+function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
 
+  let hyphenChance = 0.25;
+  let suffixHyphenChance = 0.8
+  if (phoneticStyle === "openVowels") {
+    hyphenChance = 0.5;
+    suffixHyphenChance = 0.25;
+  }
+  if (phoneticStyle === 'softConsonants') {
+    hyphenChance = 0.1;
+    suffixHyphenChance = 0.1;
+  }
+  if (phoneticStyle === 'melodic') {
+    hyphenChance = 0.1;
+    suffixHyphenChance = 0.1;
+  }
   let syllableCount = Math.floor(Math.random() * (maxSyllables - minSyllables + 1)) + minSyllables;
   let name = "";
   let lastWasVowel = false;
 
-  let first = randomPick(parts.prefix);
+  let first = randomPick(parts.prefix) || "";
   name += first;
   lastWasVowel = /[aeiouAEIOU]$/.test(first);
 
   for (let i = 1; i < syllableCount - 1; i++) {
-    let candidateArray;
+    let candidateArray = parts.middle.slice();
+    if (candidateArray.length === 0) candidateArray = [""];
 
-    if (lastWasVowel) {
-      candidateArray = [];
-      for (let j = 0; j < parts.middle.length; j++) {
-        let syll = parts.middle[j];
-        if (!/^[aeiouAEIOU]/.test(syll)) {
-          candidateArray.push(syll);
+    let syllable = randomPick(candidateArray) || "";
+
+    if (lastWasVowel && /^[aeiouAEIOU]/.test(syllable)) {
+      let consonantSyllables = [];
+      for (let j = 0; j < candidateArray.length; j++) {
+        if (!/^[aeiouAEIOU]/.test(candidateArray[j])) {
+          consonantSyllables.push(candidateArray[j]);
         }
       }
-      if (candidateArray.length === 0) candidateArray = parts.middle;
-    } else {
-      candidateArray = parts.middle;
+      if (consonantSyllables.length > 0) syllable = randomPick(consonantSyllables);
     }
 
-    let syllable = randomPick(candidateArray);
-    if (i > 1 && Math.random() < 0.15) {
+    if (Math.random() < hyphenChance) {
       name += "-";
-      capitalizeNext = true;
+      syllable = syllable.charAt(0).toUpperCase() + syllable.slice(1);
     }
 
-    if (capitalizeNext) {
-      syllable = syllable.charAt(0).toUpperCase() + syllable.slice(1);
-      capitalizeNext = false;
-    }
     name += syllable;
     lastWasVowel = /[aeiouAEIOU]$/.test(syllable);
   }
 
-  let last = randomPick(parts.suffix);
+  let last = randomPick(parts.suffix) || "";
+  if (lastWasVowel && Math.random() < suffixHyphenChance) {
+    name += "-";
+    last = last.charAt(0).toUpperCase() + last.slice(1);
+  }
   name += last;
 
   return name;
