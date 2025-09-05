@@ -8,8 +8,8 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function generateName(race) {
-  let parts = syllableData[race];
+function generateName(phoneticStyle) {
+  let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
 
   let name = randomPick(parts.prefix);
@@ -19,12 +19,13 @@ function generateName(race) {
   return name;
 }
 
-function generateNPC(race) {
-  let name = generateName(race);
+function generateNPC(phoneticStyle) {
+  let name = generateName(phoneticStyle);
   let occupation = randomPick(occupations);
   let trait = randomPick(traits);
   return `${name}, a ${trait} ${occupation}`;
 }
+
 
 document.getElementById("generateBtn").addEventListener("click", () => {
   let race = document.getElementById("styleSelect").value;
