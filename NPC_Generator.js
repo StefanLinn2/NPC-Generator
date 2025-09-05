@@ -8,10 +8,7 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function generateName(phoneticStyle, minSyllables, maxSyllables) {
-  if (minSyllables === undefined) minSyllables = 2;
-  if (maxSyllables === undefined) maxSyllables = 5;
-
+function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 4) {
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
 
@@ -19,34 +16,42 @@ function generateName(phoneticStyle, minSyllables, maxSyllables) {
   let name = "";
   let lastWasVowel = false;
 
-  let firstSyllable = randomPick(parts.prefix);
-  name += firstSyllable;
-  lastWasVowel = /[aeiouAEIOU]$/.test(firstSyllable);
+  let first = randomPick(parts.prefix);
+  name += first;
+  lastWasVowel = /[aeiouAEIOU]$/.test(first);
 
   for (let i = 1; i < syllableCount - 1; i++) {
-    let candidateArray = parts.middle.concat(parts.suffix);
-    let syllable = randomPick(candidateArray);
+    let candidateArray;
 
     if (lastWasVowel) {
-      let safeSuffixFound = false;
-      for (let j = 0; j < parts.suffix.length; j++) {
-        if (!/^[aeiouAEIOU]/.test(parts.suffix[j])) {
-          syllable = parts.suffix[j];
-          safeSuffixFound = true;
-          break;
+      candidateArray = [];
+      for (let j = 0; j < parts.middle.length; j++) {
+        let syll = parts.middle[j];
+        if (!/^[aeiouAEIOU]/.test(syll)) {
+          candidateArray.push(syll);
         }
       }
-      if (!safeSuffixFound) {
-        syllable = randomPick(parts.suffix);
-      }
+      if (candidateArray.length === 0) candidateArray = parts.middle;
+    } else {
+      candidateArray = parts.middle;
     }
 
+    let syllable = randomPick(candidateArray);
+    if (i > 1 && Math.random() < 0.15) {
+      name += "-";
+      capitalizeNext = true;
+    }
+
+    if (capitalizeNext) {
+      syllable = syllable.charAt(0).toUpperCase() + syllable.slice(1);
+      capitalizeNext = false;
+    }
     name += syllable;
     lastWasVowel = /[aeiouAEIOU]$/.test(syllable);
   }
 
-  let lastSyllable = randomPick(parts.suffix);
-  name += lastSyllable;
+  let last = randomPick(parts.suffix);
+  name += last;
 
   return name;
 }
@@ -59,8 +64,8 @@ function generateNPC(phoneticStyle) {
   return `${name}, a ${trait} ${occupation}`;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("generateBtn").addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("generateBtn").addEventListener("click", function () {
     let phoneticStyle = document.getElementById("styleSelect").value;
     document.getElementById("output").textContent = generateNPC(phoneticStyle);
   });
