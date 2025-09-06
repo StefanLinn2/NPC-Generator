@@ -96,7 +96,7 @@ function generateNPC(phoneticStyle) {
   let name = generateName(phoneticStyle);
   let occupation = randomPick(occupations);
   let trait = randomPick(traits);
-  return `${name}, a ${trait} ${occupation}`;
+  return `${name}: a ${trait} ${occupation}`;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
