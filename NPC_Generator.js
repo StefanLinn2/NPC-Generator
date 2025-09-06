@@ -91,13 +91,18 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   return name;
 }
 
+function articleFor(word) {
+  return /^[aeiouAEIOU]/.test(word) ? "an" : "a";
+}
 
 function generateNPC(phoneticStyle) {
   let name = generateName(phoneticStyle);
   let occupation = randomPick(occupations);
   let trait = randomPick(traits);
-  return `${name}: a ${trait} ${occupation}`;
+  let article = articleFor(trait);
+  return `${name}, ${article} ${trait} ${occupation}`;
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("generateBtn").addEventListener("click", function () {
