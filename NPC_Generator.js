@@ -26,7 +26,7 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   }
   if (phoneticStyle === 'melodic') {
     hyphenChance = 0.1;
-    suffixHyphenChance = 0.1;
+    suffixHyphenChance = 0.25;
   }
   if (phoneticStyle === 'harshConsonants') {
     minSyllables += 1;

@@ -14,20 +14,20 @@ let syllableData = {
   },
 
   "softConsonants": {
-    "prefix": ["Lia","Mar","Syla","Nia","Rela","Mina","Fina","Tala","Sera","Nela","Ria","Mara","Lira","Sena","Tira","Ba","Da","Pa","Na","Ma"],
+    "prefix": ["Lia","Mar","Syla","Nia","Rela","Mina","Fina","Tala","Sera","Nela","Ria","Mara","Lira","Sena","Tira","Ba","Da","Pa","Na","Ma","Ade","Ife"],
     "middle": ["li","ra","na","si","ma","la","ni","ra","li","ma","sa","ra","li","na","sa","la","na","ra","ma","da","ba","pa"],
-    "suffix": ["el","ia","in","a","il","on","ia","el","in","a","il","on","ea","ia","il","an","en","in"]
+    "suffix": ["el","ia","in","a","il","on","ia","el","in","a","il","on","ea","ia","il","an","en","in","Funmi"]
   },
 
   "complexClusters": {
-    "prefix": ["Str","Gr","Thl","Dr","Kl","Br","Tr","Kr","St","Phl","Bl","Drk","Chl","Gl","Fr","Pt","Kt","Zd","Drk","Trl"],
+    "prefix": ["Str","Gr","Thl","Dr","Kl","Br","Tr","Kr","St","Phl","Bl","Drk","Chl","Gl","Fr","Pt","Kt","Zd","Drk","Trl","Ade"],
     "middle": ["an","or","ek","is","ul","ok","ir","el","ar","ok","is","ul","ek","an","or","str","kl","tr","gr","pt","kt","zd"],
     "suffix": ["ion","ek","ar","in","ul","oth","ek","ar","in","ul","oth","ek","an","or","in"]
   },
 
   "melodic": {
-    "prefix": ["Sio","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Re","Mi","Fa","Sol","La","Ti"],
+    "prefix": ["Sio","Oluwa","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Re","Mi","Fa","Sol","La","Ti","Ife","Ayo"],
     "middle": ["ia","eo","ua","ai","oa","ie","ua","io","ae","ei","ou","ai","la","ri","na","ma","sa","ta","do","re","mi","fa","sol","la","ti"],
-    "suffix": ["ara","iel","ael","ion","ua","eo","ai","ara","iel","ael","ion","ua","eo","ai","ara","do","re","mi"]
+    "suffix": ["ara","iel","ael","ion","ua","eo","ai","ara","iel","ael","ion","ua","eo","ai","ara","do","re","mi","Funmi"]
   }
 };
