@@ -97,10 +97,15 @@ function articleFor(word) {
 
 function generateNPC(phoneticStyle) {
   let name = generateName(phoneticStyle);
-  let occupation = randomPick(occupations);
-  let trait = randomPick(traits);
-  let article = articleFor(trait);
-  return `${name}, ${article} ${trait} ${occupation}`;
+  let includeTraitRole = document.getElementById("includeTraitRole").checked;
+  if (includeTraitRole) {
+    let occupation = randomPick(occupations);
+    let trait = randomPick(traits);
+    let article = /^[aeiouAEIOU]/.test(trait) ? "an" : "a";
+    return `${name}, ${article} ${trait} ${occupation}`;
+  } else {
+    return name;
+  }
 }
 
 
