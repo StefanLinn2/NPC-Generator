@@ -26,14 +26,50 @@
       margin-bottom: 10px;
     }
 
-    #output {
+    /* NPC output box */
+    #npcBox {
       margin-top: 15px;
       padding: 10px;
       border: 1px solid #ccc;
-      min-height: 30px;
       background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 40px;
+      word-break: break-word;
+    }
+
+    #npcText {
+      flex-grow: 1;
+    }
+
+    #copyBtn {
+      margin-left: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 1.2em;
+    }
+
+    #copyBtn:hover {
+      color: #007BFF;
+    }
+
+    /* Subtle copied message */
+    #copiedMsg {
+      display: block;
+      opacity: 0;
+      color: #007BFF;
+      font-size: 0.9em;
+      margin-top: 5px;
+      transition: opacity 0.5s ease;
+    }
+
+    #copiedMsg.show {
+      opacity: 1;
     }
   </style>
+
 </head>
 
 <body>
@@ -49,11 +85,42 @@
     </select>
 
     <button id="generateBtn">Generate NPC</button>
-    <div id="output"></div>
+
+    <!-- NPC output with copy button -->
+    <div id="npcBox">
+      <span id="npcText"></span>
+      <button id="copyBtn" title="Copy to clipboard">📋</button>
+    </div>
+    <span id="copiedMsg">Copied!</span>
   </div>
 
+  <!-- External JS -->
   <script src="nameSyllables.js"></script>
   <script src="NPC_Generator.js"></script>
+
+  <!-- Copy button logic -->
+<!-- External JS -->
+<script src="nameSyllables.js"></script>
+<script src="NPC_Generator.js"></script>
+
+<!-- Copy button logic -->
+<script>
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    const text = document.getElementById("npcText").innerText;
+    if (!text) return;
+
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        const msg = document.getElementById("copiedMsg");
+        msg.classList.add("show");
+
+        setTimeout(() => {
+          msg.classList.remove("show");
+        }, 1200); // show for 1.2 seconds
+      })
+      .catch(err => console.error("Copy failed: ", err));
+  });
+</script>
 </body>
 
 </html>

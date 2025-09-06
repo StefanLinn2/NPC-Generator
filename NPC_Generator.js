@@ -102,7 +102,6 @@ function generateNPC(phoneticStyle) {
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("generateBtn").addEventListener("click", function () {
     let phoneticStyle = document.getElementById("styleSelect").value;
-    document.getElementById("output").textContent = generateNPC(phoneticStyle);
+    document.getElementById("npcText").textContent = generateNPC(phoneticStyle);
   });
 });
-
