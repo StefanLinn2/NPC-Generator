@@ -1,8 +1,19 @@
 // NPC Generator
 // StefanLinn2
 
-let traits = ["grumpy", "cheerful", "secretive", "clumsy", "stern", "cunning"];
-let occupations = ["blacksmith", "apothecary", "merchant", "guard", "bard", "scholar"];
+let traits = [
+  "grumpy", "cheerful", "secretive", "clumsy", "stern", "cunning",
+  "brave", "cowardly", "arrogant", "loyal", "greedy", "curious",
+  "eccentric", "quiet", "talkative", "mischievous", "patient", "reckless",
+  "gentle", "moody", "shy", "proud", "superstitious", "methodical"
+];
+
+let occupations = [
+  "blacksmith", "apothecary", "merchant", "guard", "bard", "scholar",
+  "farmer", "hunter", "healer", "tailor", "innkeeper", "sailor",
+  "alchemist", "scribe", "ranger", "gladiator", "artisan", "potioneer",
+  "noble", "courier", "storyteller", "mapmaker", "clockmaker", "artifact collector"
+];
 
 function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
