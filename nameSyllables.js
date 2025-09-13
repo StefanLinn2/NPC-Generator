@@ -10,7 +10,7 @@ let syllableData = {
   "harshConsonants": {
     "prefix": ["Gor","Brak","Thok","Krug","Zul","Vok","Drak","Grum","Krag","Thul","Bor","Drok","Zrak","Khal","Vruk","Ptak","Ktr","Zdr","Bjor","Thor","Sig","Gud","Ghalib"],
     "middle": ["ak","or","ug","rak","mok","th","ok","urk","az","uk","ar","ik","og","ul","pt","kt","zd","dr","gr","tr"],
-    "suffix": ["th","g","ok","ar","um","ak","or","ug","uk","oth","zt","kr","son","r","ur"]
+    "suffix": ["th","g","ok","ar","um","ak","or","ug","uk","oth","zt","kr",,"r","ur"]
   },
 
   "softConsonants": {
@@ -20,9 +20,9 @@ let syllableData = {
   },
 
   "complexClusters": {
-    "prefix": ["Str","Gr","Thl","Dr","Kl","Br","Tr","Kr","St","Phl","Bl","Drk","Chl","Gl","Fr","Pt","Kt","Zd","Trl","Ade","Bjor","Thor","Sig","Gud","Al","Ibn","Bin"],
-    "middle": ["an","or","ek","is","ul","ok","ir","el","ar","str","kl","tr","gr","pt","kt","zd"],
-    "suffix": ["ion","ek","ar","in","ul","oth","an","or","son","dottir"]
+    "prefix": ["Str","Gr","Thl","Dr","Kl","Br","Tr","Kr","St","Phl","Bl","Drk","Chl","Gl","Fr","Pt","Kt","Cze","Zd","Trl","Ade","Bjor","Thor","Sig","Gud","Al","Ibn","Bin"],
+    "middle": ["an","or","ek","is","ul","ok","ir","el","ar","ulstr","okl","atr","eugr","oupt","uukt","azd"],
+    "suffix": ["ion","ek","ar","in","ul","oth","an","or"]
   },
 
   "melodic": {

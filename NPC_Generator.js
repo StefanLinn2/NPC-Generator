@@ -181,14 +181,25 @@ function patronymic(firstName, phoneticStyle) {
   return `${firstName} ${fatherName}${suffix}`;
 }
 
+function matronymic(firstName, phoneticStyle) {
+  let surnameStyle = weightedStyle(phoneticStyle);
+  let motherName = generateName(surnameStyle, 1, 2);
 
-
-function matronymic(firstName, motherName, cultureStyle = "softConsonants") {
   let suffix = "dottir";
-  if (cultureStyle === "melodic") suffix = "iel";
-  if (cultureStyle === "complexClusters") suffix = "dottir";
+
+  if (surnameStyle === "softConsonants" || surnameStyle === "melodic") {
+    suffix = randomPick(["riel", "leal", "ril", "wen", "wyn", "dael"]);
+  } 
+  else if (surnameStyle === "complexClusters") {
+    suffix = randomPick(["skaya", "ska", "syan", "llege"]);
+  } 
+  else if (surnameStyle === "harshConsonants") {
+    suffix = randomPick(["grath","zok", "roeth", "da", "ova", "ina"]);
+  }
+
   return `${firstName} ${motherName}${suffix}`;
 }
+
 
 function locative(firstName, placeName) {
   return `${firstName} of ${placeName}`;
