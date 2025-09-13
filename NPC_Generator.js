@@ -120,19 +120,18 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   return name;
 }
 
-function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null, strictPhonetic = true) {
+function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null) {
   let firstName = generateName(phoneticStyle);
-  let secondaryStyle = strictPhonetic ? phoneticStyle : randomPick(Object.keys(syllableData));
   let fullName = firstName;
 
   if (surnameType === "fixedFamily") {
     fullName = fixedFamilyName(firstName, phoneticStyle);
   }
   else if (surnameType === "patronymic") {
-    fullName = patronymic(firstName, "Drosven", secondaryStyle);
+    fullName = patronymic(firstName, secondaryStyle);
   }
   else if (surnameType === "matronymic") {
-    fullName = matronymic(firstName, "Mira", secondaryStyle);
+    fullName = matronymic(firstName, secondaryStyle);
   }
   else if (surnameType === "locative") {
     let place = generateName(secondaryStyle);
@@ -200,7 +199,6 @@ console.log(surnameStyle, motherName, suffix)
   return `${firstName} ${motherName}${suffix}`;
 }
 
-
 function locative(firstName, placeName) {
   return `${firstName} of ${placeName}`;
 }
@@ -218,10 +216,15 @@ function honorific(firstName, title) {
   return `${firstName} the ${title}`;
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("generateBtn").addEventListener("click", function () {
     let phoneticStyle = document.getElementById("styleSelect").value;
-    document.getElementById("npcText").textContent = generateNPC(phoneticStyle);
+    let includeTraitRole = document.getElementById("includeTraitRole").checked;
+    let surnameType = document.getElementById("surnameSelect").value;  // grab dropdown value
+    document.getElementById("npcText").textContent = generateNPC(
+      phoneticStyle,
+      includeTraitRole,
+      surnameType
+    );
   });
 });

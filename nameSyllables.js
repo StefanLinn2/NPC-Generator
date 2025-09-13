@@ -10,7 +10,7 @@ let syllableData = {
   "harshConsonants": {
     "prefix": ["Gor","Brak","Thok","Krug","Zul","Vok","Drak","Grum","Krag","Thul","Bor","Drok","Zrak","Khal","Vruk","Ptak","Ktr","Zdr","Bjor","Thor","Sig","Gud","Ghalib"],
     "middle": ["ak","or","ug","rak","mok","th","ok","urk","az","uk","ar","ik","og","ul","pt","kt","zd","dr","gr","tr"],
-    "suffix": ["th","g","ok","ar","um","ak","or","ug","uk","oth","zt","kr",,"r","ur"]
+    "suffix": ["th","g","ok","ar","um","ak","or","ug","uk","oth","zt","kr","r","ur"]
   },
 
   "softConsonants": {
