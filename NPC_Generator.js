@@ -124,8 +124,8 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
   let firstName = generateName(phoneticStyle);
   let fullName = firstName;
 
-  if (surnameType === "fixedFamily") {
-    fullName = fixedFamilyName(firstName, phoneticStyle);
+  if (surnameType === "firstNameLastName") {
+    fullName = firstNameLastName(firstName, phoneticStyle);
   }
   else if (surnameType === "patronymic") {
     fullName = patronymic(firstName, phoneticStyle);
@@ -156,7 +156,7 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
 }
 
 
-function fixedFamilyName(firstName, phoneticStyle) {
+function firstNameLastName(firstName, phoneticStyle) {
   let familyName = generateName(phoneticStyle, 1, 2);
   return `${firstName} ${familyName}`;
 }
