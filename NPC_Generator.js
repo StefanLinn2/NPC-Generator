@@ -185,10 +185,10 @@ function matronymic(firstName, phoneticStyle) {
   let surnameStyle = weightedStyle(phoneticStyle);
   let motherName = generateName(surnameStyle, 1, 2);
 
-  let suffix = "dottir";
+  let suffix = "sion";
 
-  if (surnameStyle === "softConsonants" || surnameStyle === "melodic") {
-    suffix = randomPick(["riel", "leal", "ril", "wen", "wyn", "dael"]);
+  if (surnameStyle === "softConsonants" || surnameStyle === "melodic" || surnameStyle === 'openVowels') {
+    suffix = randomPick(["riel", "leal", "ril", "wen", "wyn", "dael", "balle"]);
   } 
   else if (surnameStyle === "complexClusters") {
     suffix = randomPick(["skaya", "ska", "syan", "llege"]);
@@ -196,7 +196,7 @@ function matronymic(firstName, phoneticStyle) {
   else if (surnameStyle === "harshConsonants") {
     suffix = randomPick(["grath","zok", "roeth", "da", "ova", "ina"]);
   }
-
+console.log(surnameStyle, motherName, suffix)
   return `${firstName} ${motherName}${suffix}`;
 }
 

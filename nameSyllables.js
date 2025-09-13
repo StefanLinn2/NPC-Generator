@@ -26,7 +26,7 @@ let syllableData = {
   },
 
   "melodic": {
-    "prefix": ["Sio","Oluwa","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Re","Mi","Fa","Sol","La","Ti","Ife","Ayo","Lani","Koa","Ka","Ko","Yuki","Haru","Miki","Jean","Marie","Pierre","Abd","Nur","Abu","Fatimah","Aaliyah","Dominique","Moise"],
+    "prefix": ["Sio","Oluwa","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Re","Mi","Fa","Sol","La","Ti","Ife","Ayo","Lani","Koa","Ka","Ko","Yuki","Haru","Miki","Jean","Marie","Pierre","Abd","Nur","Abu","Moise"],
     "middle": ["ia","eo","ua","ai","oa","ie","io","ae","ei","ou","la","ri","na","ma","sa","ta","do","re","mi","fa","sol","la","ti","al","el","in","uddin","ullah"],
     "suffix": ["ara","iel","ael","ion","ua","eo","ai","do","re","mi","funmi","lani","ola","ko","mi","na","ya","ette","ique","ah","ullah"]
   }
