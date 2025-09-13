@@ -108,6 +108,43 @@ function generateNPC(phoneticStyle) {
   }
 }
 
+function fixedFamilyName(firstName, familyName) {
+  return `${firstName} ${familyName}`;
+}
+
+function patronymic(firstName, fatherName, cultureStyle = "harshConsonants") {
+  let suffix = "son";
+  if (cultureStyle === "softConsonants" || cultureStyle === "melodic") suffix = "iel";
+  if (cultureStyle === "complexClusters") suffix = "sson";
+  return `${firstName} ${fatherName}${suffix}`;
+}
+
+function matronymic(firstName, motherName, cultureStyle = "softConsonants") {
+  let suffix = "dottir";
+  if (cultureStyle === "melodic") suffix = "iel";
+  if (cultureStyle === "complexClusters") suffix = "dottir";
+  return `${firstName} ${motherName}${suffix}`;
+}
+
+
+function locative(firstName, placeName) {
+  return `${firstName} of ${placeName}`;
+}
+
+
+function epithet(firstName, trait, cultureStyle = "melodic") {
+  let lastPart = generateName(cultureStyle, 1, 2);
+  return `${firstName} the ${trait} ${lastPart}`;
+}
+
+function houseClan(firstName, houseName) {
+  return `${firstName} of House ${houseName}`;
+}
+
+function honorific(firstName, title) {
+  return `${firstName} the ${title}`;
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("generateBtn").addEventListener("click", function () {
