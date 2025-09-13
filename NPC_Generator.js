@@ -139,7 +139,7 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
   }
   else if (surnameType === "epithet") {
     let trait = randomPick(traits);
-    fullName = epithet(firstName, trait, phoneticStyle);
+    fullName = epithet(firstName, trait);
   }
   else if (surnameType === "houseClan") {
     let house = generateName(phoneticStyle);
@@ -203,9 +203,37 @@ function locative(firstName, placeName) {
   return `${firstName} of ${placeName}`;
 }
 
-function epithet(firstName, trait, cultureStyle = "melodic") {
-  let lastPart = generateName(cultureStyle, 1, 2);
-  return `${firstName} the ${trait} ${lastPart}`;
+let epithets = [
+  "the Brave",
+  "the Cunning",
+  "the Wise",
+  "the Bold",
+  "the Cruel",
+  "the Gentle",
+  "the Reckless",
+  "the Stern",
+  "the Loyal",
+  "the Mysterious",
+  "the Swift",
+  "the Merciful",
+  "the Fierce",
+  "the Patient",
+  "the Silent",
+  "the Curious",
+  "the Wanderer",
+  "the Resolute",
+  "the Just",
+  "the Proud",
+  "the Secretive",
+  "the Fearless",
+  "the Devout",
+  "the Watchful",
+  "the Vengeful"
+];
+
+function epithet(firstName, trait) {
+  let lastPart = randomPick(epithets)
+  return `${firstName} ${lastPart}`;
 }
 
 function houseClan(firstName, houseName) {
