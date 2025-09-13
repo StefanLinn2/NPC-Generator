@@ -14,7 +14,7 @@ let syllableData = {
   },
 
   "softConsonants": {
-    "prefix": ["Lia","Mar","Syla","Nia","Rela","Mina","Fina","Tala","Sera","Nela","Ria","Mara","Lira","Sena","Tira","Ba","Da","Pa","Na","Ma","Ade","Ife","Jean","Marie","Pierre","Fran","Abd","Nur","Abu"],
+    "prefix": ["Lia","Mar","Syla","Nia","Rela","Mina","Fina","Tala","Sera","Nela","Ria","Mara","Lira","Sena","Tira","Ba","Da","Pa","Na","Ma","Ade","Ife","Jea","Mari","Fran","Abd","Nur","Abu"],
     "middle": ["li","ra","na","si","ma","la","ni","sa","da","ba","pa","al","el","in"],
     "suffix": ["el","ia","in","a","il","on","ea","an","en","funmi","lise","ette","ah","ullah"]
   },
@@ -26,8 +26,8 @@ let syllableData = {
   },
 
   "melodic": {
-    "prefix": ["Sio","Oluwa","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Re","Mi","Fa","Sol","La","Ti","Ife","Ayo","Lani","Koa","Ka","Ko","Yuki","Haru","Miki","Jean","Marie","Pierre","Abd","Nur","Abu","Moise"],
-    "middle": ["ia","eo","ua","ai","oa","ie","io","ae","ei","ou","la","ri","na","ma","sa","ta","do","re","mi","fa","sol","la","ti","al","el","in","uddin","ullah"],
+    "prefix": ["Sio","Oluwa","Ala","Eri","Ona","Lio","Uma","Ira","Ena","Oli","Aea","Uli","Ara","Ela","Ili","Oea","Do","Rei","Mi","Fa","Sol","La","Ti","Ife","Ayo","Lani","Koa","Ka","Ko","Yuki","Haru","Miki","Jea","Mari","Abd","Nur","Abu","Moise"],
+    "middle": ["ia","eo","ua","ai","oa","ie","io","ae","ei","ou","la","ri","na","ma","sa","ta","do","rai","mi","fae","sol","la","ti","al","el","in","uddin","ullah"],
     "suffix": ["ara","iel","ael","ion","ua","eo","ai","do","re","mi","funmi","lani","ola","ko","mi","na","ya","ette","ique","ah","ullah"]
   }
 };
