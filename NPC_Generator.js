@@ -53,7 +53,6 @@ function weightedStyle(baseStyle) {
   return baseStyle;
 }
 
-
 function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
@@ -163,12 +162,26 @@ function fixedFamilyName(firstName, phoneticStyle) {
   return `${firstName} ${familyName}`;
 }
 
-function patronymic(firstName, fatherName, cultureStyle = "harshConsonants") {
+function patronymic(firstName, phoneticStyle) {
+  let surnameStyle = weightedStyle(phoneticStyle);
+  let fatherName = generateName(surnameStyle, 1, 2);
+
   let suffix = "son";
-  if (cultureStyle === "softConsonants" || cultureStyle === "melodic") suffix = "iel";
-  if (cultureStyle === "complexClusters") suffix = "sson";
+
+  if (surnameStyle === "softConsonants" || surnameStyle === "melodic") {
+    suffix = randomPick(["iel", "el", "il", "ien", "yan", "ielis"]);
+  } 
+  else if (surnameStyle === "complexClusters") {
+    suffix = randomPick(["sson", "sen", "san", "svar"]);
+  } 
+  else if (surnameStyle === "harshConsonants") {
+    suffix = randomPick(["son", "sson", "sen"]);
+  }
+
   return `${firstName} ${fatherName}${suffix}`;
 }
+
+
 
 function matronymic(firstName, motherName, cultureStyle = "softConsonants") {
   let suffix = "dottir";
