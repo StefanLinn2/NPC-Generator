@@ -26,7 +26,7 @@ function articleFor(word) {
 function generateTraitRole() {
   let trait = randomPick(traits);
   let occupation = randomPick(occupations);
-  let article = articleFor(trait); 
+  let article = articleFor(trait);
   return `, ${article} ${trait} ${occupation}`;
 }
 
@@ -64,7 +64,7 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
     hyphenChance = 0.5;
     suffixHyphenChance = 0.25;
     maxSyllables -= 1;
-  } 
+  }
   if (phoneticStyle === 'softConsonants') {
     hyphenChance = 0.1;
     suffixHyphenChance = 0.1;
@@ -128,21 +128,21 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
     fullName = fixedFamilyName(firstName, phoneticStyle);
   }
   else if (surnameType === "patronymic") {
-    fullName = patronymic(firstName, secondaryStyle);
+    fullName = patronymic(firstName, phoneticStyle);
   }
   else if (surnameType === "matronymic") {
-    fullName = matronymic(firstName, secondaryStyle);
+    fullName = matronymic(firstName, phoneticStyle);
   }
   else if (surnameType === "locative") {
-    let place = generateName(secondaryStyle);
+    let place = generateName(phoneticStyle);
     fullName = locative(firstName, place);
   }
   else if (surnameType === "epithet") {
     let trait = randomPick(traits);
-    fullName = epithet(firstName, trait, secondaryStyle);
+    fullName = epithet(firstName, trait, phoneticStyle);
   }
   else if (surnameType === "houseClan") {
-    let house = generateName(secondaryStyle);
+    let house = generateName(phoneticStyle);
     fullName = houseClan(firstName, house);
   }
   else if (surnameType === "honorific") {
@@ -169,14 +169,14 @@ function patronymic(firstName, phoneticStyle) {
 
   if (surnameStyle === "softConsonants" || surnameStyle === "melodic") {
     suffix = randomPick(["iel", "el", "il", "ien", "yan", "ielis"]);
-  } 
+  }
   else if (surnameStyle === "complexClusters") {
     suffix = randomPick(["sson", "sen", "san", "svar"]);
-  } 
+  }
   else if (surnameStyle === "harshConsonants") {
     suffix = randomPick(["son", "sson", "sen"]);
   }
-
+  console.log(surnameStyle, fatherName, suffix);
   return `${firstName} ${fatherName}${suffix}`;
 }
 
@@ -188,14 +188,14 @@ function matronymic(firstName, phoneticStyle) {
 
   if (surnameStyle === "softConsonants" || surnameStyle === "melodic" || surnameStyle === 'openVowels') {
     suffix = randomPick(["riel", "leal", "ril", "wen", "wyn", "dael", "balle"]);
-  } 
+  }
   else if (surnameStyle === "complexClusters") {
     suffix = randomPick(["skaya", "ska", "syan", "llege"]);
-  } 
-  else if (surnameStyle === "harshConsonants") {
-    suffix = randomPick(["grath","zok", "roeth", "da", "ova", "ina"]);
   }
-console.log(surnameStyle, motherName, suffix)
+  else if (surnameStyle === "harshConsonants") {
+    suffix = randomPick(["grath", "zok", "roeth", "da", "ova", "ina"]);
+  }
+  console.log(surnameStyle, motherName, suffix);
   return `${firstName} ${motherName}${suffix}`;
 }
 
