@@ -19,6 +19,17 @@ function randomPick(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
+function articleFor(word) {
+  return /^[aeiouAEIOU]/.test(word) ? "an" : "a";
+}
+
+function generateTraitRole() {
+  let trait = randomPick(traits);
+  let occupation = randomPick(occupations);
+  let article = articleFor(trait); 
+  return `, ${article} ${trait} ${occupation}`;
+}
+
 function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
@@ -29,7 +40,7 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   if (phoneticStyle === "openVowels") {
     hyphenChance = 0.5;
     suffixHyphenChance = 0.25;
-    maxSyllables -= 1; 
+    maxSyllables -= 1;
   } 
   if (phoneticStyle === 'softConsonants') {
     hyphenChance = 0.1;
@@ -63,12 +74,7 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
     let syllable = randomPick(candidateArray) || "";
 
     if (lastWasVowel && /^[aeiouAEIOU]/.test(syllable)) {
-      let consonantSyllables = [];
-      for (let j = 0; j < candidateArray.length; j++) {
-        if (!/^[aeiouAEIOU]/.test(candidateArray[j])) {
-          consonantSyllables.push(candidateArray[j]);
-        }
-      }
+      let consonantSyllables = candidateArray.filter(s => !/^[aeiouAEIOU]/.test(s));
       if (consonantSyllables.length > 0) syllable = randomPick(consonantSyllables);
     }
 
@@ -91,26 +97,50 @@ function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   return name;
 }
 
-function articleFor(word) {
-  return /^[aeiouAEIOU]/.test(word) ? "an" : "a";
-}
+function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null, strictPhonetic = true) {
+  let firstName = generateName(phoneticStyle);
+  let secondaryStyle = strictPhonetic ? phoneticStyle : randomPick(Object.keys(syllableData));
+  let fullName = firstName;
 
-function generateNPC(phoneticStyle) {
-  let name = generateName(phoneticStyle);
-  let includeTraitRole = document.getElementById("includeTraitRole").checked;
-  if (includeTraitRole) {
-    let occupation = randomPick(occupations);
-    let trait = randomPick(traits);
-    let article = /^[aeiouAEIOU]/.test(trait) ? "an" : "a";
-    return `${name}, ${article} ${trait} ${occupation}`;
-  } else {
-    return name;
+  if (surnameType === "fixedFamily") {
+    fullName = fixedFamilyName(firstName, phoneticStyle);
   }
+  else if (surnameType === "patronymic") {
+    fullName = patronymic(firstName, "Drosven", secondaryStyle);
+  }
+  else if (surnameType === "matronymic") {
+    fullName = matronymic(firstName, "Mira", secondaryStyle);
+  }
+  else if (surnameType === "locative") {
+    let place = generateName(secondaryStyle);
+    fullName = locative(firstName, place);
+  }
+  else if (surnameType === "epithet") {
+    let trait = randomPick(traits);
+    fullName = epithet(firstName, trait, secondaryStyle);
+  }
+  else if (surnameType === "houseClan") {
+    let house = generateName(secondaryStyle);
+    fullName = houseClan(firstName, house);
+  }
+  else if (surnameType === "honorific") {
+    fullName = honorific(firstName, "Lightbringer");
+  }
+
+  if (includeTraitRole) {
+    fullName += generateTraitRole();
+  }
+
+  return fullName;
 }
 
-function fixedFamilyName(firstName, familyName) {
+
+
+function fixedFamilyName(firstName, phoneticStyle) {
+  let familyName = generateName(phoneticStyle, 1, 2);
   return `${firstName} ${familyName}`;
 }
+
 
 function patronymic(firstName, fatherName, cultureStyle = "harshConsonants") {
   let suffix = "son";
@@ -126,11 +156,9 @@ function matronymic(firstName, motherName, cultureStyle = "softConsonants") {
   return `${firstName} ${motherName}${suffix}`;
 }
 
-
 function locative(firstName, placeName) {
   return `${firstName} of ${placeName}`;
 }
-
 
 function epithet(firstName, trait, cultureStyle = "melodic") {
   let lastPart = generateName(cultureStyle, 1, 2);
