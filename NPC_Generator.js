@@ -30,6 +30,30 @@ function generateTraitRole() {
   return `, ${article} ${trait} ${occupation}`;
 }
 
+function weightedStyle(baseStyle) {
+  let weights = {
+    openVowels: { openVowels: 0.8, melodic: 0.2 },
+    softConsonants: { softConsonants: 0.7, melodic: 0.2, complexClusters: 0.1 },
+    melodic: { melodic: 0.7, openVowels: 0.2, softConsonants: 0.1 },
+    harshConsonants: { harshConsonants: 0.8, complexClusters: 0.2 },
+    complexClusters: { complexClusters: 0.7, harshConsonants: 0.2, softConsonants: 0.1 }
+  };
+
+  let table = weights[baseStyle];
+  if (!table) return baseStyle;
+
+  let roll = Math.random();
+  let cumulative = 0;
+
+  for (let style in table) {
+    cumulative += table[style];
+    if (roll <= cumulative) return style;
+  }
+
+  return baseStyle;
+}
+
+
 function generateName(phoneticStyle, minSyllables = 1, maxSyllables = 3) {
   let parts = syllableData[phoneticStyle];
   if (!parts) return "Unknown";
@@ -130,17 +154,14 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
   if (includeTraitRole) {
     fullName += generateTraitRole();
   }
-
   return fullName;
 }
-
 
 
 function fixedFamilyName(firstName, phoneticStyle) {
   let familyName = generateName(phoneticStyle, 1, 2);
   return `${firstName} ${familyName}`;
 }
-
 
 function patronymic(firstName, fatherName, cultureStyle = "harshConsonants") {
   let suffix = "son";
