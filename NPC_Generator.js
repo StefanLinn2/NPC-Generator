@@ -155,7 +155,6 @@ function generateNPC(phoneticStyle, includeTraitRole = false, surnameType = null
   return fullName;
 }
 
-
 function firstNameLastName(firstName, phoneticStyle) {
   let familyName = generateName(phoneticStyle, 1, 2);
   return `${firstName} ${familyName}`;
